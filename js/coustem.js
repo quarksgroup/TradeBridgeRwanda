@@ -578,12 +578,12 @@ contact Form
 $(function ($) {
   $("#contact-form").on("submit", function (e) {
     e.preventDefault();
-    const names = $("#contact-name").text();
-    const email = $("#contact-email").text();
-    const subject = $("#contact-subject").text();
-    const message = $("#contact-message").text();
-    const submitBtn = $("submit-btn");
-    const SID = "";
+    const names = document.querySelector("#contact-names").value
+    const email = document.querySelector("#contact-email").value;
+    const subject = document.querySelector("#contact-subject").value;
+    const message = document.querySelector("#contact-message").value;
+    const submitBtn = document.querySelector("#submit-btn");
+    const SID = "service_dle3h2f";
     const TID = "template_0f1d59t";
 
     const params = {
@@ -592,12 +592,13 @@ $(function ($) {
       subject,
       message,
     };
-    submitBtn.addClass("load");
+    console.log(params);
+    submitBtn.classList.add("load");
     emailjs
       .send(SID, TID, params)
       .then(function (res) {
         alert("Email sent successfully.");
-        submitBtn.removeClass("load");
+        submitBtn.classList.remove("load");
       })
       .catch(function (err) {
         console.log(err);
